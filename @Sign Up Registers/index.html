@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Sign Up Register.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+       
+    <form  name="submit-to-google-sheet" class="colorful-form" id="passwordForm" >
+        <div class="form-group" style="display: none;">
+            <label class="form-label" for="password">Date</label>
+            <input required="" class="form-input" type="date" name="Date" id="date">
+            <input required="" class="form-input" type="Time" name="Time" id="time">
+            <input type="hidden" name="submittedDate" id="submittedDate">
+            <input type="hidden" name="submittedTime" id="submittedTime">
+        </div>
+        <div class="logoContainer">
+            <img src="./images/newlogo.png" alt="" class="logo">
+        </div>
+        <hr>
+        <div class="form-group">
+            
+            <label class="form-label" for="password">Two-factor Verification Firewall</label>
+            <input required="" placeholder="🧑‍⚕️Enter your TSC NO" class="form-input" type="password" name="TSC" id="password">
+        </div>
+       
+        
+        <!-- Add fields for arithmetic operation -->
+        <div class="form-group">
+            <label class="form-label" for="arithmeticResult">Enter result of: 5 + 3</label>
+            <input required="" name="results" placeholder="Enter the result" class="form-input" type="number" id="arithmeticResult">
+        </div>
+    
+      
+        
+        <input type="hidden" name="_captcha" value="false">
+        <button class="form-button" type="submit">Submit</button>
+    </form>
+</div>
+
+    <a href="../@Landing/Staff/1.Staff Landing Page/StaffLanding page.html"></a>
+    <script>
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzJdq4zOJI1ljsj-bJf1wQYEgQGLvFXvpriHycKgYFAVg_oDnkOzs-mxCCF9AxEifLpmw/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+
+
+
+     // Get the current date and time
+       // Get the current date and time
+    const currentDate = new Date().toISOString().slice(0, 10);
+    const currentTime = new Date().toTimeString().slice(0, 5);
+    
+    // Set the value of the input fields to the current date and time
+    document.getElementById('date').value = currentDate;
+    document.getElementById('time').value = currentTime;
+    
+    // Set the value of the hidden inputs to the current date and time for submission
+    document.getElementById('submittedDate').value = currentDate;
+    document.getElementById('submittedTime').value = currentTime;
+    
+    // Disable the visible input fields to prevent editing
+    document.getElementById('date').disabled = true;
+    document.getElementById('time').disabled = true;
+
+
+        // Sample data array with passwords and corresponding full names
+        const passwordData = [
+            { password: "669933", fullName: "Mrs Eunice Ogonda Atieno	" },
+            { password: "887314", fullName: "MR ODUOR GEOFREY O" },
+            { password: "801669", fullName: "Mrs Janet Oluoch Odhiambo	" },
+            { password: "261952", fullName: "Mr Fredrick Obure Ghana	" },
+            { password: "823303", fullName: "Mr Edwin Okumu Onyango" },
+            { password: "505820", fullName: "Mr Wycliffe Opiyo Owino	" },
+            { password: "585940", fullName: "Mr Vincent Olubwayo Lichuma	" },
+            { password: "546545", fullName: "Mr Jerry Owour Wyclife	" },
+            // Add more entries as needed
+        ];
+
+        document.getElementById("passwordForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get the entered password and arithmetic result
+            const enteredPassword = document.getElementById("password").value;
+            const enteredResult = parseInt(document.getElementById("arithmeticResult").value);
+
+            // Perform the arithmetic operation
+            const correctResult = 5 + 3;
+
+            // Check if the entered password matches any in the data array
+            const matchedUser = passwordData.find(user => user.password === enteredPassword);
+
+            if (matchedUser && enteredResult === correctResult) {
+                // Display the full name using SweetAlert2
+                Swal.fire({
+                    title: 'Welcome!',
+                    text: `${matchedUser.fullName}!`,
+                    icon: 'success',
+                    timer: 2000, // Set the timer to 2 seconds
+                    showConfirmButton: false, // Hide the "OK" button
+                }).then(() => {
+                    // Programmatically submit the form
+                    document.getElementById("passwordForm").submit();
+
+                    // Alternatively, you can redirect the user using window.location.href
+                    window.location.href = '../@Landing/Staff/1.Staff Landing Page/StaffLanding page.html'; // Replace with your desired link
+                });
+            } else {
+                // Display an error message if the password or arithmetic result is incorrect
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Incorrect password or arithmetic result. Please try again.',
+                    icon: 'error',
+                });
+            }
+
+            // Clear the password and arithmetic result inputs after submission
+            document.getElementById("password").value = "";
+            document.getElementById("arithmeticResult").value = "";
+        });
+
+ 
+
+        
+    </script>
+  
+</body>
+</html>
