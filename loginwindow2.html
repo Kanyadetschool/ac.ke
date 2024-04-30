@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher ID Check</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="swal.css">
+</head>
+<body>
+    <script>
+        const teachers = [
+            { id: "12345", name: "John Doe", redirectUrl: "https://example.com/john" },
+            { id: "67890", name: "Jane Smith", redirectUrl: "https://example.com/jane" },
+            // Add more teachers as needed
+        ];
+
+        Swal.fire({
+            title: 'Enter ID Number',
+            input: 'text',
+            inputLabel: 'ID Number',
+            inputAttributes: {
+                autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Validate',
+            showLoaderOnConfirm: true,
+            allowOutsideClick: false, // Disable outside clicks
+            preConfirm: (id) => {
+                const isValidId = teachers.some(teacher => teacher.id === id);
+                if (!isValidId) {
+                    Swal.showValidationMessage('Invalid ID');
+                }
+                return isValidId ? id : null;
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const id = result.value;
+                const teacher = teachers.find(teacher => teacher.id === id);
+                if (teacher) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'ID Verified!',
+                        text: `Welcome, ${teacher.name}`,
+                    }).then(() => {
+                        window.location.href = teacher.redirectUrl;
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid ID',
+                        text: 'Please enter a valid ID number.',
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

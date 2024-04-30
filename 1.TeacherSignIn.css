@@ -38,7 +38,8 @@
 }
 
 body,
-input {
+input,
+select {
   font-family: "Poppins", sans-serif;
 
 }
@@ -249,13 +250,19 @@ form.sign-in-form {
   
  
 }
-
-.input-field input::placeholder {
+select{
+  font-size: 1.1rem;
+}
+::placeholder {
   color: #fff;
   font-weight: 500;
   
  
 }
+textarea::placeholder{
+  font-size: 1.1rem;
+}
+
 
 .social-text {
   padding: 0.7rem 0;
