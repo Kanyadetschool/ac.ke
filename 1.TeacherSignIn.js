@@ -159,7 +159,7 @@ function updateDateAndTime() {
   const seconds = now.getSeconds().toString().padStart(2, '0');
 
   const dayElement = document.getElementById("day");
-  const dateElement = document.getElementById("date");
+  const dateElement = document.getElementById("dated");
   const timeElement = document.getElementById("time");
 
   dayElement.textContent = dayOfWeek;

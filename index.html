@@ -48,24 +48,21 @@
 
 
 <h3 class="teachers">Teachers 💫</h3>
-            <h2 class="title"> &nbsp;&nbsp;Sign In</h2>
+            <h2 class="title"> &nbsp;&nbsp;Sign Up</h2>
             <form action="https://formsubmit.co/geofreyonyango167@gmail.com" method="POST" autocomplete="off" enctype="multipart/form-data" id="myForm">
           
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter Official Name" name="username"  id="username" required  inputmode="text"/>
+              <input type="text" placeholder="Enter  Active E-mail " name="email"  id="email" required  autocomplete="off"/>
             </div>
-           
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="number" placeholder="Official Phone number" name="PhoneNumber" id="phone" inputmode="numeric"/>
+              <input type="password" placeholder="Preferred Password" name="password" id="password" required autocomplete="off"/>
             </div>
-            <div class="input-field" style="display: none;">
-              <i class="fas fa-lock"></i>
-              <input type="datetime-local" placeholder="date" name="Date" id="date" required autocomplete="off"/>
-            </div>
-            <!-- <input type="submit" value="Submit"  class="btn solid" id="submit" /> -->
-            <input type="submit" id="submit"  class="btn solid" vaue="Sign up" />
+        <div class="sendingOrbutton">
+          <div> <input type="submit" id="SighUp"  class="btn solid" vaue="Sign up" /> </div> 
+          <button class="btn solid" > <a href="./Phone sign In.html" id="Phone" >Phone Sign In</a></button>
+          </div>
             <p class="social-text"></p>
              
             <div class="loader"></div>
@@ -76,7 +73,7 @@
 
             <div class="date-container">
               <div id="day" class="day"></div>
-              <div id="date" class="date"></div>
+              <div id="dated" class="dated"></div>
             </div>
           </form>
 
@@ -98,7 +95,7 @@
             <h2 class="title">Acknowledgement</h2>
             Welcome to our school's web login! Your engagement and support are invaluable. By logging in, you agree to follow our guidelines for responsible use.
              Thank you for partnering with us in your child's education. 🧑‍⚕️<br> <br>
-            <a href="https://kanyadetschool-2.web.app/" class="submitt">Get started </a>
+             <a href="https://kanyadetschool-2.web.app/" class="submitt">Get started </a>
             <br><br>
             <!-- searching start/////////////////////////////////////// -->
             <div id="wifi-loader">
@@ -160,8 +157,9 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-  import { getDatabase,ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
-
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+  import { getDatabase } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAY3JyvjwVkUMi6a34GWGBYPHtZAoYq3cw",
@@ -175,40 +173,70 @@
   };
 
   const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+  const database = getDatabase(app);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
 
-document.getElementById("submit").addEventListener('click', function(e) {
-  e.preventDefault();
+  document.getElementById("SighUp").addEventListener('click', (e) => {
+    e.preventDefault();
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+   
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        alert('User Created');
+        window.location.href="./@Sign Up Registers/index.html"
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+        
+      });
+  });
+
+
+
+
+
+
+
+
   
-  const username = document.getElementById("username").value;
-  const phone = document.getElementById("phone").value;
 
-  if (!username.trim() || !phone.trim()) {
-    alert('Please fill in all fields');
-    return;
-  }
+function updateDateAndTime() {
+  const daysOfWeek = [
+    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+  ];
 
-  const currentDate = new Date().toLocaleDateString();
-  const currentTime = new Date().toLocaleTimeString();
-  
-  set(ref(db, 'user/' + username), {
-    username: username,
-    PhoneNumber: phone,
-    Date: currentDate,
-    Time: currentTime
-  })
-    .then(() => {
-     
-      window.location.href="./loginwindow2.html"
+  const months = [
+    "January", "February", "March", "April", "May", "June", "July", "August",
+    "September", "October", "November", "December"
+  ];
 
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorMessage);
-    });
-});
+  const now = new Date();
+  const dayOfWeek = daysOfWeek[now.getDay()];
+  const month = months[now.getMonth()];
+  const day = now.getDate();
+  const year = now.getFullYear();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
 
+  const dayElement = document.getElementById("day");
+  const dateElement = document.getElementById("date");
+  const timeElement = document.getElementById("time");
+
+  dayElement.textContent = dayOfWeek;
+  dateElement.textContent = `${month} ${day}, ${year}`;
+  timeElement.textContent = `${hours}hr : ${minutes}min : ${seconds}sec`;
+}
+
+updateDateAndTime(); // Initial call to display the date and time
+
+// Update the date and time every second
+setInterval(updateDateAndTime, 1000);
 
 </script>
    
