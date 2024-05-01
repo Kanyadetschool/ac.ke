@@ -137,17 +137,23 @@ p,h2
 				alert(error.message);
 			});
 		}
-		// Function for verifying code
-		function codeverify(){
-			var code = document.getElementById('verificationcode').value;
-			coderesult.confirm(code).then(function(){
-				document.getElementsByClassName('p-conf')[0].style.display = 'block';
-				document.getElementsByClassName('n-conf')[0].style.display = 'none';
-			}).catch(function(){
-				document.getElementsByClassName('p-conf')[0].style.display = 'none';
-				document.getElementsByClassName('n-conf')[0].style.display = 'block';
-			});
-		}
+		// Function for verifying code and redirecting with delay after successful verification
+function codeverify(){
+    var code = document.getElementById('verificationcode').value;
+    coderesult.confirm(code).then(function(){
+        document.getElementsByClassName('p-conf')[0].style.display = 'block';
+        document.getElementsByClassName('n-conf')[0].style.display = 'none';
+        // Delay for 2 seconds after successful verification
+        setTimeout(function(){
+            window.location.replace("https://kanyadetschool-1.web.app/loginwindow2.html");
+        }, 2000);
+    }).catch(function(){
+        document.getElementsByClassName('p-conf')[0].style.display = 'none';
+        document.getElementsByClassName('n-conf')[0].style.display = 'block';
+    });
+}
+
+
 	</script>
 </body>
 </html>

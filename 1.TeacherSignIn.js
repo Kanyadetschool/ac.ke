@@ -137,6 +137,30 @@ sign_in_btn.addEventListener("click", () => {
 
 
 
+// Swal.fire({
+//   title: 'Its Here with Us!!',
+//   text: 'Try One Time Log In Feature Today.',
+//   icon: 'info',
+//   showCancelButton: true,
+//   confirmButtonText: 'Continue',
+//   cancelButtonText: 'Cancel',
+  
+//   timerProgressBar: false,
+//   willOpen: () => {
+//     Swal.showLoading();
+//   },
+// }).then((result) => {
+//   if (result.dismiss === Swal.DismissReason.cancel) {
+//     // Handle cancel action (remove SweetAlert)
+//     Swal.close();
+//   } else {
+//     // Continue with your action (redirect or other functionality)
+//     window.location.href = './One Time Log In/login.html'; // Replace with your desired URL
+//   }
+// });
+
+
+
 
 
 function updateDateAndTime() {

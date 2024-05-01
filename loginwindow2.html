@@ -11,15 +11,21 @@
 <body>
     <script>
         const teachers = [
-            { id: "33924729", name: "MR ODUOR GEOFREY ONYANGO \n TSC NO 887314", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
-            { id: "67890", name: "Jane Smith", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
+            { id: "669933", name: "Mrs Eunice Ogonda Atieno.", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
+            { id: "887314", name: "MR ODUOR GEOFREY O", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
+            { id: "801669", name: "Mrs Janet Oluoch Odhiambo", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
+            { id: "261952", name: "Mr Fredrick Obure Ghana", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
+            { id: "823303", name: "Mr Edwin Okumu Onyango", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
+            { id: "505820", name: "Mr Wycliffe Opiyo Owino", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
+            { id: "546545", name: "Mr Jerry Owour Wyclife", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
+            { id: "585940", name: "Mr Vincent Olubwayo Lichuma", redirectUrl: "./@Landing/Staff/1.Staff Landing Page/StaffLanding page.html" },
             // Add more teachers as needed
         ];
 
         Swal.fire({
-            title: 'Enter ID Number',
+            title: 'TSC Number Required',
             input: 'text',
-            inputLabel: 'ID Number',
+            inputLabel: 'Enter your  Number',
             inputAttributes: {
                 autocapitalize: 'off'
             },
@@ -41,7 +47,7 @@
                 if (teacher) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'ID Verified!',
+                        title: 'TSC ID Verified!',
                         text: `Welcome, ${teacher.name}`,
                     }).then(() => {
                         window.location.href = teacher.redirectUrl;
