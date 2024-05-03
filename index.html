@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <meta http-equiv="Permissions-Policy" content="geolocation 'self'; camera 'self';"> -->
     <title>Master Sign In Kanyadet School</title>
     <link rel="stylesheet" href="1.TeacherSignIn.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,12 +58,11 @@
         <h3 class="teachers">Teachers 💫</h3>
                     <h2 class="title"> &nbsp;&nbsp;Sign Up</h2>
                     <form action="https://formsubmit.co/geofreyonyango167@gmail.com" method="POST"  enctype="multipart/form-data" id="myForm">
-                  
-                   
+             
                    
                     <div id="firebaseui-auth-container"></div>
             
-                    <a href="./@Landing/Staff/1.Staff Landing Page/terms.html"   >Terms Of Service</a>
+                    <a href="./@Landing/Staff/1.Staff Landing Page/terms.html" class="Terms"  >Terms Of Service</a> 
                      
                     <div class="loader"></div>
                     <div class="social-media">   
@@ -150,13 +150,7 @@
             <script src="GoogleAuthlogin.js"></script>
         
         
-        
-            <!-- Firebase SDK and Initialization Script -->
-        <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js"></script>
-        
+
         <script>
         function updateDateAndTime() {
           const daysOfWeek = [
