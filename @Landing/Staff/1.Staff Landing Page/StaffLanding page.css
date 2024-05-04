@@ -666,7 +666,7 @@ span{
 .title{
     text-align: left;
 position: absolute;
-    margin-left: 10%;
+    margin-left: 6%;
     margin-top: 10px;
     text-align: center;
     color: rgb(4, 23, 49);
@@ -717,6 +717,21 @@ nav ul li a{
     font-weight: bold;
     color: red;
     box-shadow: 3px 3px 3px red;
+}
+button{
+   text-decoration: none;
+   border: 3px solid #08ffff;
+    border-radius: 10px;
+    color: #08ffff;
+    margin-right: 20px;
+    /* color: rgb(118, 116, 115); */
+    padding: 5px 4px ;
+    background:  hsl(218, 84%, 19%);
+    font-family: monospace;
+    font-size: 1rem;
+    /* background: #ffffff9c; */
+    font-weight: bold;
+    box-shadow: 3px 3px 3px #08ffff;  
 }
 
     nav ul li a:hover{
@@ -773,7 +788,7 @@ nav ul li a{
 .logo{
 display: grid;
 grid-template-columns: repeat(2,1fr);
-margin-left: 60px;
+margin-left: 15px;
 }
 .header  .logo a{
      font-size: 28px;

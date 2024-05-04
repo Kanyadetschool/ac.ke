@@ -241,12 +241,18 @@ form.sign-up-form {
   border: 3px solid #fff;
   border-radius: 20px;
   max-width: 310px;
-  height: 55px;
+  height: 45px;
+}
+.mdl-button.firebaseui-idp-google:hover{
+  background-color: rgb(31, 200, 186);
+}
+span.firebaseui-idp-text.firebaseui-idp-text-long{
+  color: #fffafa;
 }
 .mdl-button.firebaseui-idp-password{
   border: 3px solid #fff;
   border-radius: 20px;
-  height: 55px;
+  height: 45px;
   background-color: rgb(7, 32, 66);
   max-width: 310px;
 }
@@ -255,7 +261,7 @@ form.sign-up-form {
   background-color: rgb(7, 32, 66);
   border-radius: 20px;
   max-width: 310px;
-  height: 55px;
+  height: 45px;
 
 }
 .mdl-button.firebaseui-idp-phone:hover{
