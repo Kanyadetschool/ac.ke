@@ -4,5 +4,6 @@
     "deploy": "kanyadetschool-1"
   },
   "targets": {},
-  "etags": {}
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
