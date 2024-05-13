@@ -1,16 +1,30 @@
 const Titles = [
-
     {
-        Group: '             KANYADET PRIMARY SCHOOL SIP COMMITTEE MEETING',
-        year: 2023,
+        Group:'KANYADET PRIMARY AND JUNIOR SCHOOL KPEEL TENDER OPENING   COMMITTEE ',
+        year: 2024,
         students: [
            {
-             Date: 'Thursday 10th, October 2023',
-             pdfUrl: 'https://docs.google.com/document/d/1ZPLo78E5z02Y2pH2EHWU9KS84bmnwrN4/edit?usp=sharing&ouid=110287645281482421505&rtpof=true&sd=true',
+             Date: 'Thursday 15th, February 2024',
+             pdfUrl: 'https://docs.google.com/document/d/1eQ8eHRZheH6OgV4wy7RkKfcyJ7d3dkLP/edit?usp=sharing&ouid=110287645281482421505&rtpof=true&sd=true',
              imageUrl: './images/newlogo.png'
              },
         ]
     },
+
+    {
+        Group:'KANYADET PRIMARY  AND JUNIOR SCHOOL  INSPECTION AND ACCEPTANCE COMMITTEE',
+        year: 2024,
+        students: [
+           {
+             Date: 'Monday 11th, March 2024',
+             pdfUrl: 'https://docs.google.com/document/d/1PGHH3YfCEuVjk-idcKvNnJiXeybjnT7H/edit?usp=sharing&ouid=110287645281482421505&rtpof=true&sd=true',
+             imageUrl: './images/newlogo.png'
+             },
+        ]
+    },
+   
+
+  
 
     {
         Group: 'KANYADET JUNIOR SECONDARY INFRASTRUCTURE COMMITTEE MEETING ',
@@ -121,7 +135,17 @@ const Titles = [
         ]
     },
    
-
+    {
+        Group: '             KANYADET PRIMARY SCHOOL SIP COMMITTEE MEETING',
+        year: 2023,
+        students: [
+           {
+             Date: 'Thursday 10th, October 2023',
+             pdfUrl: 'https://docs.google.com/document/d/1ZPLo78E5z02Y2pH2EHWU9KS84bmnwrN4/edit?usp=sharing&ouid=110287645281482421505&rtpof=true&sd=true',
+             imageUrl: './images/newlogo.png'
+             },
+        ]
+    },
    
 
    
