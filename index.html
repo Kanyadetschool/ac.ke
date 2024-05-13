@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- <meta http-equiv="Permissions-Policy" content="geolocation 'self'; camera 'self';"> -->
-    <title>Master Sign In Kanyadet School</title>
+    <title>Sign In</title>
     <link rel="stylesheet" href="1.TeacherSignIn.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,15 +66,21 @@
                     <a href="./@Landing/Staff/1.Staff Landing Page/terms.html" class="Terms"  >Terms Of Service</a> 
                      
                     <div class="loader"></div>
-                    <div class="social-media">   
-                               
-                    </div>
+                   
                  <a href="../2.TrsLandingPage/2.TrsLandingPage.html"></a>
         
                     <div class="date-container">
                       <div id="day" class="day"></div>
                       <div id="dated" class="dated"></div>
                     </div>
+                    <div id="time" class="dated"></div>
+                    <div id="installButtonContainer">
+                      <button class="btn" id="installButton">Install App</button>
+                    </div>
+                    <div id="thankYouMessage" style="display: none;">
+                      Thank you for installing the app!
+                    </div>
+                    <button id="shareButton" style="display: none;" class="Terms">Share App</button> <!-- Share button initially hidden -->
                   </form>
         
                   <audio id="successSound">
@@ -97,6 +103,7 @@
                      Thank you for partnering with us in your child's education. 🧑‍⚕️<br> <br>
                      <a href="https://kanyadetschool-2.web.app/" class="submitt">Get started </a>
                     <br><br>
+
                     <!-- searching start/////////////////////////////////////// -->
                     <div id="wifi-loader">
                       <svg class="circle-outer" viewBox="0 0 86 86">
@@ -122,14 +129,13 @@
               <div class="panels-container">
                 <div class="panel left-panel">
                   <div class="content">
-                   <h2> Kanyadet  School</h2>   <h4>Parents , Guardians & Students</h2>
+                   <h2> Kanyadet  School</h2>   <h4>Parents , Guardians <br> & Students</h2>
                     <img src="./img/newlogo.png" alt=""  id="logo">
-                    <p>....................................c</p>
                     <button class="btn transparent" id="sign-up-btn">
                       Sign Up  here💫 
                     </button>
                   </div>
-                 
+                 <a href="./img/pic192.png"></a>
                   <img src="img/log.svg" class="image" alt="" />
                 </div>
                 <div class="panel right-panel">
@@ -154,39 +160,74 @@
         
 
         <script>
-        function updateDateAndTime() {
-          const daysOfWeek = [
-            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-          ];
-        
-          const months = [
-            "January", "February", "March", "April", "May", "June", "July", "August",
-            "September", "October", "November", "December"
-          ];
-        
-          const now = new Date();
-          const dayOfWeek = daysOfWeek[now.getDay()];
-          const month = months[now.getMonth()];
-          const day = now.getDate();
-          const year = now.getFullYear();
-          const hours = now.getHours().toString().padStart(2, '0');
-          const minutes = now.getMinutes().toString().padStart(2, '0');
-          const seconds = now.getSeconds().toString().padStart(2, '0');
-        
-          const dayElement = document.getElementById("day");
-          const dateElement = document.getElementById("date");
-          const timeElement = document.getElementById("time");
-        
-          dayElement.textContent = dayOfWeek;
-          dateElement.textContent = `${month} ${day}, ${year}`;
-          timeElement.textContent = `${hours}hr : ${minutes}min : ${seconds}sec`;
-        }
-        
-        updateDateAndTime(); // Initial call to display the date and time
-        
-        // Update the date and time every second
-        setInterval(updateDateAndTime, 1000);
-        
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if the app is running in standalone mode (installed as a PWA)
+  if (isAppInstalled()) {
+    document.getElementById('installButtonContainer').style.display = 'none';
+  }
+});
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Show the install button if the app is not already installed
+  if (!isAppInstalled()) {
+    document.getElementById('installButtonContainer').style.display = 'block';
+  }
+});
+
+document.getElementById('installButton').addEventListener('click', () => {
+  if (deferredPrompt) {
+    // Show the install prompt when the button is clicked
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+        // Hide the install button and show thank you message
+        document.getElementById('installButtonContainer').style.display = 'none';
+        document.getElementById('thankYouMessage').style.display = 'block';
+        document.getElementById('shareButton').style.display = 'block'; // Show share button after installation
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+      // Reset the deferredPrompt variable
+      deferredPrompt = null;
+    });
+  } else {
+    console.error('Installation prompt is not available.');
+  }
+});
+
+document.getElementById('shareButton').addEventListener('click', () => {
+  // Example: Share functionality
+  if (navigator.share) {
+    navigator.share({
+      title: 'Kanyadet School Official App ',
+      text: 'Improving Online School Services.🧑‍⚕️!',
+      url: window.location.href
+    }).then(() => {
+      console.log('Shared successfully.');
+    }).catch((error) => {
+      console.error('Error sharing:', error);
+    });
+  } else {
+    console.error('Sharing not supported.');
+  }
+});
+
+// Always show the share button if the app is installed
+if (isAppInstalled()) {
+  document.getElementById('shareButton').style.display = 'block';
+}
+
+function isAppInstalled() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+}
         </script>
            
         

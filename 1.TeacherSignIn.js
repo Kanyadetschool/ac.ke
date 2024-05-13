@@ -188,10 +188,29 @@ function updateDateAndTime() {
 
   dayElement.textContent = dayOfWeek;
   dateElement.textContent = `${month} ${day}, ${year}`;
-  timeElement.textContent = `${hours}hr : ${minutes}min : ${seconds}sec`;
+  timeElement.textContent = `${hours}hrs : ${minutes}min`;
 }
 
 updateDateAndTime(); // Initial call to display the date and time
 
 // Update the date and time every second
 setInterval(updateDateAndTime, 1000);
+
+
+
+
+
+const btn = document.getElementById('installButton');
+
+function blinkBorderTwice() {
+  btn.classList.add('blinking-border');
+  setTimeout(() => {
+    btn.classList.remove('blinking-border');
+  }, 8000); // Remove blinking class after 2 seconds
+}
+
+// Automatically trigger the blinking effect on page load
+window.onload = () => {
+  blinkBorderTwice();
+};
+

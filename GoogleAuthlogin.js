@@ -11,7 +11,7 @@ var uiConfig = {
           //firebase.auth.GithubAuthProvider.PROVIDER_ID,
   ],
   // Terms of service url.
-  tosUrl: 'terms.html'
+  tosUrl: '/@Landing/Staff/1.Staff%20Landing%20Page/terms.html'
 };
 
 // Initialize the FirebaseUI Widget using Firebase.

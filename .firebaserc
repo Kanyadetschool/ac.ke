@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "kanyadetschool-2",
-    "deploy": "kanyadetschool-1"
+    "deploy": "kanyadetschool-1",
+    "Cancel": "kanyadetschool-1"
   },
   "targets": {},
   "etags": {},
