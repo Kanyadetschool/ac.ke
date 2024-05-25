@@ -7,11 +7,10 @@
    margin: 0;
    padding: 0;
    background-color: #f8f8f8;
-   background-image: url(./images/new2.jpeg);
+   background-image: url(./images/new1.png);
    background-size: contain;
-   
-
    }
+   
    .highlight {
     background-color: yellow;
     font-weight: bold;
@@ -148,10 +147,11 @@ width: 75%;
    }
    
    .document-card {
-        border: 1px solid #0eefff;
+        border: 3px solid lavender;
+
     
   box-shadow: 0 4px 6px rgb(11, 235, 223), 0 1px 3px rgb(255, 254, 254);
-   /* background-color: #ffffff81; */
+   background-color: #ffffffcd;
    border-radius: 8px;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
    padding: 20px;

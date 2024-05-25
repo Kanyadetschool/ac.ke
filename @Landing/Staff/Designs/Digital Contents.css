@@ -1561,8 +1561,10 @@ height: 40px;
 
 /* /////////////Staff SMS BTN section pop up START///////////////////// */
 .cardstaff {
-  max-width: 380px;
-  display: flex;
+  max-width: 880px;
+  /* display: flex; */
+  height: 80vh;
+  overflow: scroll;
   align-items: flex-start;
   justify-content: space-between;
   border-radius: 0.5rem;
@@ -1618,9 +1620,10 @@ height: 40px;
 
 .actions,.gridplay {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-gap: 0.5rem;
   gap: 0.5rem;
+  overflow: auto;
 }
 
 
@@ -2127,6 +2130,14 @@ background-clip: text;
     
   }
   
+.actions,.gridplay {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 0.5rem;
+  gap: 0.5rem;
+  overflow: auto;
+  transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
 
   .AdminIcon{
     font-size: 30px;
