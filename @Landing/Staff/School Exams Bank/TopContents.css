@@ -25,3 +25,9 @@
   .download-links a:hover{
 color: #fff;
   }
+  @media (max-width:370px)  {
+    .download-links {
+      display: grid;
+      grid-template-columns: repeat(1,1fr);
+    }
+  }

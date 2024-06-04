@@ -43,7 +43,7 @@ document.querySelectorAll("nav","close").forEach(n => n.
   const microsofthide = document.querySelector('.microsofthide');
 
   setTimeout(function() {
-    microsofthide.style.display = 'none';
+    microsofthide.style.display = 'block';
   }, 5000); // Adjust the delay time as needed
 });
 
@@ -114,7 +114,7 @@ formContainers.forEach((container) => {
 
 ////////////COUNTDOWN//////////////////
  // Set the date we're counting down to
- const countDownDate = new Date("April 29, 2024 00:00:00").getTime();
+ const countDownDate = new Date("June 1, 2024 00:00:00").getTime();
 
  // Update the countdown every 1 second
  const x = setInterval(function() {
@@ -140,10 +140,10 @@ formContainers.forEach((container) => {
    // If the countdown is finished, display a message
    if (distance < 0) {
      clearInterval(x);
-     document.getElementById("countdown-days").innerHTML = "Expired";
-     document.getElementById("countdown-hours").innerHTML = "Expired";
-     document.getElementById("countdown-minutes").innerHTML = "Expired";
-     document.getElementById("countdown-seconds").innerHTML = "Expired";
+     document.getElementById("countdown-days").innerHTML = "00";
+     document.getElementById("countdown-hours").innerHTML = "00";
+     document.getElementById("countdown-minutes").innerHTML = "00";
+     document.getElementById("countdown-seconds").innerHTML = "00";
    }
  }, 8000);
 
