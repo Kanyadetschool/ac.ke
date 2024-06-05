@@ -11,4 +11,4 @@
   
 
     // Call the function after 2000 milliseconds (2 seconds)
-    stTimeout(showDelayedSweetAlert, 2000);
+    setTimeout(showDelayedSweetAlert, 2000);
