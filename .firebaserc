@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "kanyadetschool-2",
+    "default": "kanyadetschool-1",
     "deploy": "kanyadetschool-1",
     "Cancel": "kanyadetschool-1"
   },

@@ -1250,7 +1250,7 @@ marquee{
   #logo{
     width: 100px;
     position: absolute;
-    left: 37%;
+    left: 36%;
     top:140px;
     height: 80px;
      }
@@ -1260,7 +1260,6 @@ marquee{
   }
   .panel .content {
     padding: 0.5rem 1rem;
-    margin-left: 8%;
     
   }
   .container {
