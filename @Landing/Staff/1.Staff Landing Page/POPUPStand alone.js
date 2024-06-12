@@ -1,14 +1,26 @@
-
-    // Function to show SweetAlert after delay
-    function showDelayedSweetAlert() {
-      Swal.fire({
-        title: 'Urgent Update!',
-        text: 'KNEC School Based Assessments is set to start with practicals as from June 3rd, 2024 for Grade 3 ,July 1st 2024 for Grade 4 & 5. Junior school {Grade 7 and 8} from 1st July 2024.This evaluation endeavor encompasses students from grade 3 to Grade 8, with the exception of Grade 6. ',
-       footer:'&copy Examination office 2024',
-        confirmButtonText: 'Close',
-      });
+// Function to show the SweetAlert with a spinning loader and auto-close after 2 seconds
+function showDelayedSweetAlert() {
+  Swal.fire({
+    title: 'In Memory of Mr Edwin Okumu!',
+    text: 'Take a moment of silence as we honor his life. Thank you',
+    confirmButtonText: 'Close',
+    timer: 18000, // Auto-close after 2 seconds
+    timerProgressBar: true,
+    allowOutsideClick: false, // Disable outside click to close
+    didOpen: () => {
+      // Add spinning loader
+      Swal.showLoading();
+    },
+    willClose: () => {
+      Swal.hideLoading();
     }
-  
+  });
+}
 
-    // Call the function after 2000 milliseconds (2 seconds)
-    setTimeout(showDelayedSweetAlert, 2000);
+// Check if the user has already seen the pop-up
+if (!localStorage.getItem('popupShown')) {
+  // Call the function after 2000 milliseconds (2 seconds)
+  setTimeout(showDelayedSweetAlert, 2000);
+  // Set the flag in localStorage
+  localStorage.setItem('popupShown', 'true');
+}

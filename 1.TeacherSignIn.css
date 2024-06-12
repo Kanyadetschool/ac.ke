@@ -1260,6 +1260,7 @@ marquee{
   }
   .panel .content {
     padding: 0.5rem 1rem;
+    margin-left: 25px;
     
   }
   .container {
