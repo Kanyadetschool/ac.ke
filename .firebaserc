@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "default": "kanyadetschool-1",
+    "deploy": "kanyadetschool-1",
+    "Cancel": "kanyadetschool-1"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

@@ -753,20 +753,16 @@ marquee{
   width: 6px;
   border-radius: 3px;
 }
-.guest{
-margin-top: 18px;
-}
 .Terms{
   text-decoration: none;
   background-color: #060b3b;
   border-radius: 40px;
   border: 6px solid lavender;
   color: #fff;
-  outline: none;
   height: 49px;
   font-family: "Poppins", sans-serif;
   padding: 6px 10px;
- margin-right: 10px;
+  margin: 4px 4px;
 }
 .Terms:hover{
 
