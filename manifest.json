@@ -1,6 +1,6 @@
 {
-  "name": "Admin Kanyadet",
-  "short_name": "Admin",
+  "name": "Kanyadet School Official App",
+  "short_name": "Kanyadet school",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
