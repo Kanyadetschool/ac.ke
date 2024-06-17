@@ -30,7 +30,7 @@ var mainApp = {};
         function resetTimer() {
             clearTimeout(timer);
             clearTimeout(warningTimer);
-            timer = setTimeout(showWarning, 10000); // 4.5 minutes (270,000 milliseconds)
+            timer = setTimeout(showWarning, 270000); // 4.5 minutes (270,000 milliseconds)
         }
 
         // Function to show the warning
@@ -85,6 +85,12 @@ var mainApp = {};
     }();
 
     init();
+
+    // Add event listener for beforeunload to ensure logout
+    window.addEventListener('beforeunload', function(event) {
+        logout();
+        event.returnValue = ''; // This is required for Chrome to show the warning dialog
+    });
 
     mainApp.logout = logout;
 })();
