@@ -30,7 +30,7 @@ var mainApp = {};
         function resetTimer() {
             clearTimeout(timer);
             clearTimeout(warningTimer);
-            timer = setTimeout(showWarning, 270000); // 4.5 minutes (270,000 milliseconds)
+            timer = setTimeout(showWarning, 5000); // 4.5 minutes (270,000 milliseconds)
         }
 
         // Function to show the warning
