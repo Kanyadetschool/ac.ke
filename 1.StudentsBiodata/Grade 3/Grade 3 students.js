@@ -1,16 +1,16 @@
 // Define default data
 const defaultData = [
   {
-    ClassIndex: "Active",
+    Gender: "Male",
     StudentFullName: "JOYJESCA ABALA ATIENO",
     AdmissionNo: "001/23",
     EntryNo: "XXXXXXXXXXXX",
     AssessmentNumber: "A000874444",
-    Gender: "Female",
-    DateOfAdm:"XXXXXXXXXXXX",
+    Disability: "None",
+    DateOfAdm: "XXXXXXXXXXXX",
     AdmissionClass: "XXXXXXXXXXXX",
-    DateOfBirth:"XXXXXXXXXXXX",
-    Level: "Grade 8",
+    DateOfBirth: "XXXXXXXXXXXX",
+    Level: "Grade 1",
     UPI: "BANX8B",
     PhoneNumber: "XXXXXXXXXXXX",
     StudentSchoolEmail: "XXXXXXXXXXXX",
@@ -22,59 +22,14 @@ const defaultData = [
     FileUrl2: "#",
     FileUrl3: "#",
     FileUrl4: "./img/Students.jpg",
-
   },
-  {
-    ClassIndex: "Active",
-    StudentFullName: "AKATCH MILLICENT AKINYI",
-    AdmissionNo: "002/32",
-    EntryNo: "XXXXXXXXXX",
-    AssessmentNumber: "A000184885",
-    Gender: "Female",
-    DateOfAdm:"XXXXXXXXXX",
-    AdmissionClass: "XXXXXXXXXX",
-    DateOfBirth:"XXXXXXXXXX",
-    Level: "Grade 8",
-    UPI: "DUZZUH0",
-    PhoneNumber: "XXXXXXXXXX",
-    StudentSchoolEmail: "XXXXXXXXXX",
-    ClassTeacher: "🧑‍⚕️ Mr Wyclife Owino",
-    ParentGuardianName: "XXXXXXXXXX",
-    ParentGuardianPhoneNumber: "07999958",
-    Siblings: "XXXXXXXXXX",
-    FileUrl1: "#",
-    FileUrl2: "#",
-    FileUrl3: "#",
-    FileUrl4: "./img/Students.jpg",
-
-  },
-  {
-    ClassIndex: "Active",
-    StudentFullName: "VIVIAN ACHIENG OKOTH",
-    AdmissionNo: "XXXXXXXXXX",
-    EntryNo: "0431938390",
-    AssessmentNumber: "A000011219",
-    Gender: "Female",
-    DateOfAdm:"XXXXXXXXXX",
-    AdmissionClass: "XXXXXXXXXX",
-    DateOfBirth:"XXXXXXXXXX",
-    Level: "Grade 8",
-    UPI: "DUZZUH0",
-    PhoneNumber: "XXXXXXXXXX",
-    StudentSchoolEmail: "XXXXXXXXXX",
-    ClassTeacher: "🧑‍⚕️ Mr Wyclife Owino",
-    ParentGuardianName: "XXXXXXXXXX",
-    ParentGuardianPhoneNumber: "07999958",
-    Siblings: "XXXXXXXXXX",
-    FileUrl1: "#",
-    FileUrl2: "#",
-    FileUrl3: "#",
-    FileUrl4: "./img/Students.jpg",
-
-  },
-  
   // Add more default data objects as needed
 ];
+
+// Define global variables
+let filteredStudents = [];
+let noDataAlertShown = false;
+let swalInstance = null; // Variable to hold SweetAlert instance
 
 // Function to disable all form fields
 function disableFormFields() {
@@ -90,13 +45,13 @@ function disableFormFields() {
 
 // Function to populate the form with data and create download links
 function populateForm(data) {
-  document.querySelector('input[name="ClassIndex"]').value = data.ClassIndex || '';
+  document.querySelector('input[name="Gender"]').value = data.Gender || '';
   document.querySelector('input[name="StudentFullName"]').value = data.StudentFullName || '';
   document.querySelector('input[name="Admission No"]').value = data.AdmissionNo || '';
   document.querySelector('input[name="EntryNo"]').value = data.EntryNo || '';
-  document.querySelector('select[name="Gender"]').value = data.Gender || '';
-  document.querySelector('input[name="DateOfAdm"]').value = data.DateOfAdm|| '';
-  document.querySelector('input[name="DateOfBirth"]').value = data.DateOfBirth|| '';
+  document.querySelector('select[name="Disability"]').value = data.Disability || '';
+  document.querySelector('input[name="DateOfAdm"]').value = data.DateOfAdm || '';
+  document.querySelector('input[name="DateOfBirth"]').value = data.DateOfBirth || '';
   document.querySelector('input[name="Admission Class"]').value = data.AdmissionClass || '';
   document.querySelector('input[name="Level"]').value = data.Level || '';
   document.getElementById('Assessment Number').value = data.AssessmentNumber || '';
@@ -140,6 +95,11 @@ function populateForm(data) {
     learnerImageContainer.appendChild(img);
     learnerImageContainer.style.display = 'block';
   }
+
+  // Close the SweetAlert pop-up after populating the form
+  if (swalInstance) {
+    swalInstance.close();
+  }
 }
 
 // Function to filter data based on the first three letters of the input (e.g., name)
@@ -153,44 +113,26 @@ function filterDataByName(StudentFullName) {
 // Function to handle no data found scenario with SweetAlert
 function handleNoDataFound() {
   Swal.fire({
-    icon: 'error',
+    icon: 'warning',
     title: 'No Matching Data Found!',
-    text: 'Please refine your search by \n typing First two letters of the Christian name',
-    timer: 5000, // Display alert for 5 seconds
+    text: 'Please refine your search by typing the first three letters for the Christian name.',
+    timer: 3000, // Display alert for 3 seconds
+    didClose: () => {
+      const studentNames = defaultData.map(student => student.StudentFullName);
+      generateStudentList(studentNames, 'All Registered Learners', studentNames.length);
+    }
   });
 }
 
-/// Define a variable to track whether the year select has been disabled
-let yearSelectDisabled = false;
-let prevSelectedYear = ''; // Variable to store previously selected year
-
-// Function to generate a list of StudentFullName with year selection
-function generateStudentList(studentNames, title, count, prevYear = '') {
-  // Count the number of learners in each year
-  const years = {};
-  studentNames.forEach(name => {
-    const year = defaultData.find(data => data.StudentFullName === name).Level;
-    if (year in years) {
-      years[year]++;
-    } else {
-      years[year] = 1;
-    }
-  });
-
+// Function to generate a list of StudentFullName with numbering
+function generateStudentList(studentNames, title, count) {
   let options = {};
   studentNames.forEach((name, index) => {
-    options[index] = `${name}`;
+    options[index] = `${index + 1}. ${name}`;
   });
 
   // Prepare the HTML content for the Swal pop-up
   const htmlContent = `
-    <div style="margin-top: 4px;">
-      <select id="yearSelect" class="swal2-select" placeholder="Select year">
-        <option value="">Select Grade</option>
-       
-        ${Object.keys(years).map(year => `<option value="${year}">${year}</option>`).join('')}
-      </select>
-    </div>
     <div>
       <h3 for="studentNameSelect">Select a student:</h3>
       <select id="studentNameSelect" class="swal2-select" placeholder="Select learner">
@@ -200,34 +142,17 @@ function generateStudentList(studentNames, title, count, prevYear = '') {
     </div>`;
 
   // Display the Swal pop-up
-  Swal.fire({
+  swalInstance = Swal.fire({
     title: `${title} (${count})`,
     html: htmlContent,
-    showCancelButton: true,
+    showCancelButton: false, // Remove OK button
     didOpen: () => {
       const studentSelect = document.getElementById('studentNameSelect');
-      const yearSelect = document.getElementById('yearSelect');
-      
-      // Check if the previous year is set and select it
-      if (prevYear) {
-        yearSelect.value = prevYear;
-      }
 
       studentSelect.addEventListener('change', function(event) {
         const selectedIndex = event.target.value;
-        const selectedStudent = filteredStudents[selectedIndex];
+        const selectedStudent = filteredStudents[selectedIndex] || defaultData[selectedIndex];
         populateForm(selectedStudent);
-      });
-
-      yearSelect.addEventListener('change', function(event) {
-        if (!yearSelectDisabled) {
-          yearSelectDisabled = true; // Set the flag to true
-          yearSelect.disabled = true; // Disable the select element
-        }
-        const selectedYear = event.target.value;
-        filteredStudents = selectedYear ? defaultData.filter(student => student.Level === selectedYear) : defaultData;
-        const studentNames = filteredStudents.map(student => student.StudentFullName);
-        generateStudentList(studentNames, `SYSTEM ENROLLMENT `, filteredStudents.length, selectedYear);
       });
     },
   });
@@ -236,28 +161,6 @@ function generateStudentList(studentNames, title, count, prevYear = '') {
 // Event listener for DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.querySelector('input[type="search"]');
-  let noDataAlertShown = false;
-
-  // Function to handle no data found scenario with SweetAlert
-  function handleNoDataFound() {
-    if (!noDataAlertShown) {
-      Swal.fire({
-        icon: 'error',
-        title: 'No Matching Data Found!',
-        text: 'Please refine your search by typing the first three letters for Christian Name',
-        timer: 5000,
-        didClose: () => {
-          noDataAlertShown = false;
-          const inputValue = searchInput.value.trim();
-          if (inputValue.length >= 3) {
-            const studentNames = defaultData.map(student => student.StudentFullName);
-            generateStudentList(studentNames, 'Total Registered Learners', studentNames.length, prevSelectedYear);
-          }
-        },
-      });
-      noDataAlertShown = true;
-    }
-  }
 
   // Function to handle live filtering and form population
   function handleLiveFiltering(inputValue) {
@@ -266,11 +169,11 @@ document.addEventListener('DOMContentLoaded', function() {
       return; // If less than 3 characters, do not perform filtering or show the pop-up
     }
 
-    const filteredData = filterDataByName(inputValue);
+    filteredStudents = filterDataByName(inputValue);
 
-    if (filteredData.length > 0) {
-      const studentNames = filteredData.map(student => student.StudentFullName);
-      generateStudentList(studentNames, 'Matching Names', filteredData.length, prevSelectedYear);
+    if (filteredStudents.length > 0) {
+      const studentNames = filteredStudents.map(student => student.StudentFullName);
+      generateStudentList(studentNames, 'Matching Names', filteredStudents.length);
       noDataAlertShown = false;
     } else {
       handleNoDataFound();
@@ -286,11 +189,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initially hide download link containers and learner image container
   const downloadContainers = document.querySelectorAll('[id^="fileDownload"]');
   downloadContainers.forEach(container => {
-    container.style.display = 'block';
+    container.style.display = 'none';
   });
 
   const learnerImageContainer = document.getElementById('learnerImages');
   learnerImageContainer.style.display = 'none';
 });
-
-

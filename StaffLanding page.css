@@ -15,7 +15,7 @@
     --text-x-dark-gray: hsl(0, 0%, 10%);
     --text-dark-gray:hsl(0 0% 20%);
     /* --main-color: hsl(200, 70%, 55%); */
-    --main-color: hsl(218, 84%, 19%);
+    /* --main-color: hsl(218, 84%, 19%); */
     -my-color: hsl(20, 70%, 55%);
 
    /* bg colors*/
@@ -115,7 +115,7 @@ body{
 
 
 #fab1{
-    color: #ff0606;
+    color: #ffffffc5;
     font-size: 20px;
 }
 #fab1:hover{
@@ -458,6 +458,10 @@ h1,h2,h3,h4,h5,h6{
     line-height: 1.3;
     color: #090e4c;
     
+    
+}
+#logout{
+    border: 4px solid red;
 }
 p{
     margin-bottom: 15px;
@@ -575,6 +579,7 @@ button{
     border: 3px solid #08ffff;
      border-radius: 10px;
      color: #08ffff;
+     height: 60%;
      margin-right: 20px;
      /* color: rgb(118, 116, 115); */
      padding: 5px 4px ;
@@ -589,6 +594,8 @@ button{
     display: inline-block;
     padding: 10px 20px;
     background-color: var(--main-color);
+    background-image: url(/images/pin2.jpg);
+    background-size: cover;
     color: var(--text-white);
     font-weight: 500;
     font-size: var(--fs-md);
@@ -681,8 +688,11 @@ textarea.input-control{
 }
 span{
     padding: 10px;
+    background-image: url(/images/pin2.jpg);
+    background-size: cover;
     background-color: #0d093bfd;
-    padding: 0px 10px 0px 10px;
+    margin-bottom: 50px;
+    padding: 5px 10px 5px 10px;
     border-radius: 10px;
     color: rgb(224, 224, 223);
     font-family: 'Times New Roman', Times, serif;
@@ -740,8 +750,10 @@ nav ul li a{
     font-size: 1rem;
     /* background: #ffffff9c; */
     font-weight: bold;
-    color: red;
-    box-shadow: 3px 3px 3px red;
+    background-image: url(/images/pin2.jpg);
+    background-size: cover;
+    color: rgb(253, 252, 252);
+    box-shadow: 3px 3px 3px rgb(15, 15, 255);
 }
 
 .swal2-popup p{
@@ -896,9 +908,9 @@ margin-left: 10px;
     margin: 0 0 20px;
     text-transform: capitalize;
 }
-.home-text p{
+/* .home-text p{
     margin: 0 0 30px;
-}
+} */
 .home-img{
     position: relative;
     

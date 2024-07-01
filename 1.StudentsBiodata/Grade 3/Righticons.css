@@ -1,28 +1,24 @@
 /* icons right start */
 .icon-container {
     position: fixed;
-    top: 33%;
-    right: -8px; /* Changed from -8px to 0 */
+    top: 36%;
+    right: -14px; /* Changed from -8px to 0 */
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #ffffff94;
+    background-color: #211010;
     padding: 8px 5px;
     border-radius: 10px;
-    border: 3px solid rgba(49, 18, 255, 0.968);
+    border: 3px solid rgba(255, 178, 13, 0.913);
     z-index: 999; /* Added z-index to ensure the container is on top */
   }
-  .icon-container:hover{
-    padding: 3px 20px;
-    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
  
-  }
   
   .icon {
     margin-bottom: 20px;
     font-size: 24px;
-    color: rgb(27, 27, 224);
+    color: rgba(255, 255, 255, 0.913);
     cursor: pointer;
     position: relative;
     transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
@@ -42,7 +38,7 @@
   
   .name {
     position: absolute;
-    right: 70px;
+    right: 40px;
     background-color: #f1f1f1;
     padding: 5px 10px;
     border-radius: 4px;
@@ -75,9 +71,8 @@
     filter: blur(5px);
   }
   /* icons right ends */
-
   @media(max-width: 850px){
     .icon-container {
-      top: 16%;
+      top: 19%;
     }
   }

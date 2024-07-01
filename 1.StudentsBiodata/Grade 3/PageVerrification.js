@@ -9,12 +9,12 @@ document.addEventListener("DOMContentLoaded", function() {
         // Prompt for password using SweetAlert
         function showPasswordPrompt() {
             Swal.fire({
-                title: 'Enter Search Authentication Key',
+                title: 'Search Authentication Key',
                 input: 'password',
                 inputPlaceholder: 'Enter auth Key',
                 showCancelButton: true,
                 confirmButtonText: 'Submit',
-                cancelButtonText: 'Cancel',
+                cancelButtonText: 'Bypass',
                 inputValidator: (value) => {
                     if (value !== 'kaka') {
                         return 'Incorrect password! Please try again.';
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Incorrect password or cancel button clicked
                     Swal.fire({
                         title: 'Access Denied',
-                        text: 'You do not have permission to update.',
+                        text: 'We cannot verify you.Kindly Contact School ICT Team if this is not correct',
                         icon: 'error',
                         showCancelButton: false, // Remove the "Retry" option
                         confirmButtonText: 'Close',
@@ -68,5 +68,5 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
         showPasswordPrompt();
-    }, 2000); // 2 seconds
+    }, 7000); // 2 seconds
 });
